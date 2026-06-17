@@ -1,0 +1,561 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Listing Proposal — Barry Plant Berwick</title>
+<script>document.documentElement.className+=' js';</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAF8F4; --sand:#EDE8DE; --sand-line:#E0D9C9;
+    --midnight:#000047; --ink:#22224a; --ink-soft:#5d5d78;
+    --cobalt:#001FB9; --watermelon:#F92044; --line:#d9d3c4; --on-dark:#F3EFE7; --on-dark-soft:#aeb0cf;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"DM Sans",system-ui,sans-serif;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;}
+  h1,h2,h3{font-family:"Playfair Display",Georgia,serif;font-weight:600;color:var(--midnight);}
+
+  .wrap{max-width:1000px;margin:0 auto;padding:0 clamp(22px,5vw,48px);width:100%;}
+  .sec{padding:clamp(64px,11vh,120px) 0;}
+  .sec.full{min-height:100vh;display:flex;align-items:center;}
+  .sec.sand{background:var(--sand);}
+  .sec.dark{background:var(--midnight);color:var(--on-dark);}
+
+  .eyebrow{font-size:clamp(.68rem,1.5vw,.8rem);letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--cobalt);margin:0 0 16px;}
+  .dark .eyebrow{color:var(--watermelon);}
+  h2.title{font-size:clamp(2rem,5.5vw,3.4rem);line-height:1.07;letter-spacing:-.01em;margin:0 0 .5em;}
+  .lead{font-family:"Playfair Display",serif;font-style:italic;font-size:clamp(1.15rem,2.8vw,1.6rem);line-height:1.4;color:var(--midnight);margin:0 0 1.3em;max-width:34ch;}
+  .dark .lead{color:var(--on-dark-soft);}
+
+  html.js .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease;}
+  html.js .reveal.in{opacity:1;transform:none;}
+
+  .f{outline:none;}
+  .f:empty:before{content:attr(data-ph);color:var(--ink-soft);opacity:.55;font-style:italic;}
+  .dark .f:empty:before{color:var(--on-dark-soft);}
+  body.editing .f{border-bottom:2px dashed var(--cobalt);min-width:36px;cursor:text;border-radius:2px;padding:0 2px;}
+  body.editing .f:focus{background:rgba(0,31,185,.06);}
+
+  .cover-rule{width:64px;height:3px;background:var(--watermelon);margin:0 0 26px;}
+  .cover-addr{font-family:"Playfair Display",serif;font-size:clamp(2.4rem,8vw,5rem);line-height:1.02;color:var(--on-dark);font-weight:600;margin:.05em 0 .25em;}
+  .cover-for{font-family:"Playfair Display",serif;font-style:italic;font-size:clamp(1.05rem,2.6vw,1.5rem);color:var(--on-dark-soft);}
+  .cover-foot{margin-top:36px;font-size:.92rem;letter-spacing:.04em;color:var(--on-dark-soft);}
+  .cover-foot b{color:var(--on-dark);}
+  .agenda{margin-top:clamp(34px,6vh,56px);border-top:1px solid rgba(255,255,255,.18);padding-top:26px;}
+  .agenda h3{color:var(--on-dark);font-size:1rem;font-family:"DM Sans";letter-spacing:.16em;text-transform:uppercase;font-weight:700;margin:0 0 16px;}
+  .agenda ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 28px;counter-reset:a;}
+  .agenda li{counter-increment:a;display:flex;gap:12px;align-items:baseline;color:var(--on-dark);font-size:1.05rem;}
+  .agenda li::before{content:counter(a,decimal-leading-zero);font-family:"Playfair Display",serif;color:var(--watermelon);font-size:.95rem;}
+  .scrollcue{margin-top:40px;font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:var(--on-dark-soft);}
+
+  .goals{display:grid;gap:20px;margin-top:6px;}
+  .goal-i{display:grid;grid-template-columns:170px 1fr;gap:18px;align-items:start;}
+  .goal-i .lab{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--cobalt);padding-top:5px;}
+  .goal-i .val{font-size:clamp(1.05rem,2.3vw,1.3rem);line-height:1.4;color:var(--midnight);}
+
+  .hero-feat{font-family:"Playfair Display",serif;font-size:clamp(1.4rem,3.4vw,2rem);line-height:1.3;color:var(--midnight);margin:0 0 26px;max-width:30ch;}
+  .feat-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px 30px;margin:0 0 28px;}
+  .feat-i{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:baseline;}
+  .feat-i::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--watermelon);margin-top:.5em;flex:none;}
+  .feat-i .v{font-size:1.05rem;color:var(--ink);}
+  .bbc{display:flex;gap:14px;flex-wrap:wrap;}
+  .bbc>div{background:#fff;border:1px solid var(--line);border-radius:8px;padding:16px 24px;text-align:center;min-width:96px;}
+  .bbc b{display:block;font-family:"Playfair Display",serif;font-size:2rem;color:var(--cobalt);line-height:1;}
+  .bbc span{display:block;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);font-weight:700;margin-top:8px;}
+
+  .price-band{background:#fff;border:1px solid var(--line);border-left:5px solid var(--cobalt);border-radius:8px;padding:24px 28px;margin:0 0 24px;}
+  .price-band .k{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);font-weight:700;}
+  .price-band .v{font-family:"Playfair Display",serif;font-size:clamp(1.8rem,4.5vw,2.7rem);color:var(--cobalt);font-weight:600;line-height:1.1;margin-top:4px;}
+  .price-band .note{font-size:.92rem;color:var(--ink-soft);margin-top:6px;}
+  .comps{display:grid;border-top:1px solid var(--line);margin-top:4px;}
+  .comp{display:flex;justify-content:space-between;gap:16px;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--line);}
+  .comp .a{color:var(--ink);font-size:1.05rem;}
+  .comp .p{font-family:"Playfair Display",serif;color:var(--cobalt);font-weight:600;font-size:1.2rem;white-space:nowrap;}
+  .ev-note{font-family:"Playfair Display",serif;font-style:italic;color:var(--midnight);margin-top:16px;font-size:1.1rem;}
+  .meta-row{display:flex;gap:14px;flex-wrap:wrap;margin:24px 0 0;}
+  .meta{flex:1;min-width:170px;background:#fff;border:1px solid var(--line);border-radius:8px;padding:16px 18px;}
+  .meta .k{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);font-weight:700;margin-bottom:5px;}
+  .meta .v{font-size:1.1rem;color:var(--midnight);font-weight:500;}
+
+  .beat{min-height:100vh;display:flex;align-items:center;}
+  .beat .wrap{text-align:center;display:flex;flex-direction:column;align-items:center;}
+  .beat .sub{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--ink-soft);margin-bottom:8px;}
+  .beat h3{font-size:clamp(1.7rem,5vw,2.9rem);line-height:1.08;color:var(--midnight);margin:0 0 4px;max-width:18ch;}
+  .stage{width:100%;max-width:720px;margin:14px auto 4px;}
+  .stage svg{width:100%;height:auto;max-height:46vh;display:block;}
+  .beat .cap{font-size:clamp(1rem,2.3vw,1.3rem);line-height:1.5;color:var(--ink);max-width:42ch;margin:14px auto 0;}
+  .beat .cap b{color:var(--midnight);}
+
+  .mk{display:grid;grid-template-columns:repeat(2,1fr);gap:12px 30px;margin-top:6px;}
+  .mk-i{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:baseline;padding:6px 0;}
+  .mk-i::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--watermelon);margin-top:.5em;flex:none;}
+  .mk-i .v{font-size:1.05rem;color:var(--ink);}
+  .reach{margin-top:28px;background:var(--midnight);color:var(--on-dark);border-radius:8px;padding:22px 26px;font-size:1.12rem;}
+  .reach b{color:var(--watermelon);}
+
+  .beat .micro{margin:14px auto 0;font-size:.84rem;color:var(--ink-soft);background:#fff;border:1px solid var(--line);border-radius:99px;padding:7px 16px;display:inline-block;max-width:40ch;}
+  .mk-cost{font-size:1.08rem;color:var(--midnight);font-weight:700;margin:0 0 14px;}
+  .mk-cost b{color:var(--cobalt);}
+  .roi{background:#fff;border:1px solid var(--line);border-radius:10px;padding:26px 28px;margin:0 0 28px;}
+  .roi-line{display:grid;grid-template-columns:180px 1fr auto;gap:16px;align-items:center;margin-bottom:14px;}
+  .roi-line span{font-size:.88rem;color:var(--ink-soft);font-weight:700;}
+  .roi-line .b{height:22px;background:var(--sand);border-radius:6px;overflow:hidden;}
+  .roi-line .b i{display:block;height:100%;}
+  .roi-line b{font-family:"Playfair Display",serif;font-size:1.5rem;color:var(--midnight);white-space:nowrap;}
+  .roi p{margin:10px 0 0;font-size:.92rem;color:var(--ink-soft);}
+  .cmp{border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:0 0 22px;background:#fff;}
+  .cmp-row{display:grid;grid-template-columns:1.2fr 1fr 1fr;border-top:1px solid var(--line);}
+  .cmp-row:first-child{border-top:none;}
+  .cmp-row>div{padding:13px 16px;font-size:.96rem;}
+  .cmp-row .h{font-weight:700;color:var(--ink-soft);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;background:var(--sand);}
+  .cmp-row .lbl{font-weight:700;color:var(--midnight);}
+  .cmp-row .full{color:var(--midnight);font-weight:600;border-left:3px solid var(--cobalt);background:rgba(0,31,185,.03);}
+  .cmp-row .cut{color:var(--ink-soft);}
+  .cmp-row.result .full{color:var(--cobalt);}
+  .cmp-row.result .cut{color:var(--watermelon);font-weight:600;}
+  .punch{font-family:"Playfair Display",serif;font-style:italic;font-size:clamp(1.1rem,2.6vw,1.5rem);color:var(--midnight);line-height:1.4;max-width:40ch;margin:0;}
+  @media (max-width:640px){
+    .roi-line{grid-template-columns:1fr auto;}
+    .roi-line .b{display:none;}
+    .cmp-row{grid-template-columns:1fr;}
+    .cmp-row .h{display:none;}
+    .cmp-row .lbl{background:var(--sand);}
+    .cmp-row .full{border-left:none;}
+    .cmp-row .full::before{content:"Full: ";font-weight:700;color:var(--cobalt);}
+    .cmp-row .cut::before{content:"Cut-price: ";font-weight:700;}
+  }
+
+  .fee-grid{display:flex;gap:16px;flex-wrap:wrap;margin:6px 0 26px;}
+  .fee-box{flex:1;min-width:200px;background:#fff;border:1px solid var(--line);border-radius:8px;padding:24px 28px;}
+  .fee-box.accent{border-left:5px solid var(--watermelon);}
+  .fee-box .k{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);font-weight:700;}
+  .fee-box .v{font-family:"Playfair Display",serif;font-size:clamp(1.8rem,4vw,2.6rem);color:var(--midnight);font-weight:600;margin-top:6px;line-height:1.1;}
+  .fee-frame{font-family:"Playfair Display",serif;font-style:italic;font-size:clamp(1.2rem,3vw,1.7rem);color:var(--midnight);line-height:1.4;max-width:34ch;}
+
+  .fees3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:8px 0 22px;}
+  .feecard{background:#fff;border:1px solid var(--line);border-radius:10px;padding:24px 22px;display:flex;flex-direction:column;}
+  .feecard.accent{border:2px solid var(--watermelon);box-shadow:0 14px 34px -20px rgba(249,32,68,.5);}
+  .feecard .tag{font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--ink-soft);margin-bottom:12px;}
+  .feecard.accent .tag{color:var(--watermelon);}
+  .feecard h3{font-size:1.3rem;margin:0 0 10px;color:var(--midnight);}
+  .feecard .rate{display:flex;align-items:baseline;gap:8px;margin-bottom:6px;flex-wrap:wrap;}
+  .feecard .rate b{font-family:"Playfair Display",serif;font-size:clamp(1.7rem,4vw,2.4rem);color:var(--cobalt);font-weight:600;line-height:1;}
+  .feecard.accent .rate b{color:var(--watermelon);}
+  .feecard .rate span{font-size:.8rem;color:var(--ink-soft);}
+  .feecard .plus{font-family:"Playfair Display",serif;font-size:1.05rem;color:var(--midnight);font-weight:600;margin:0 0 10px;}
+  .feecard p{font-size:.92rem;color:var(--ink);line-height:1.5;margin:6px 0 0;}
+  .fee-eg{font-family:"Playfair Display",serif;font-style:italic;font-size:.95rem;color:var(--ink-soft);margin:0 0 18px;}
+  .fee-mktg{display:inline-block;background:var(--sand);border:1px solid var(--sand-line);border-radius:99px;padding:8px 16px;font-size:.92rem;font-weight:600;color:var(--midnight);margin:0 0 22px;}
+  .fee-mktg b{color:var(--cobalt);}
+  @media (max-width:760px){.fees3{grid-template-columns:1fr;}}
+
+  .ask .wrap{text-align:center;}
+  .ask-q{font-family:"Playfair Display",serif;font-size:clamp(2.8rem,11vw,7rem);line-height:1.02;color:var(--on-dark);font-weight:600;margin:0;}
+  .ask-q .dot{color:var(--watermelon);}
+  .ask-sub{margin-top:26px;font-size:clamp(1.05rem,2.6vw,1.5rem);color:var(--on-dark-soft);font-family:"Playfair Display",serif;font-style:italic;}
+
+  footer{background:var(--midnight);color:var(--on-dark-soft);padding:30px 0;font-size:.86rem;}
+  footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+  footer b{color:var(--on-dark);}
+
+  .progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--watermelon);z-index:60;transition:width .1s;}
+  .editbtn{position:fixed;top:max(14px,env(safe-area-inset-top));right:max(14px,env(safe-area-inset-right));z-index:61;
+    font-family:"DM Sans";font-size:.76rem;font-weight:700;letter-spacing:.06em;border:1px solid rgba(120,120,150,.4);
+    background:rgba(255,255,255,.85);backdrop-filter:blur(6px);color:var(--midnight);padding:9px 14px;border-radius:99px;cursor:pointer;}
+  .editbtn.active{background:var(--cobalt);color:#fff;border-color:var(--cobalt);}
+  .editbar{position:fixed;top:max(14px,env(safe-area-inset-top));left:50%;transform:translateX(-50%);z-index:61;background:var(--midnight);color:var(--on-dark);
+    padding:9px 16px;border-radius:99px;font-size:.8rem;display:none;align-items:center;gap:14px;max-width:92vw;}
+  body.editing .editbar{display:flex;}
+  body.editing .editbtn{display:none;}
+  .editbar b{color:#fff;}
+  .editbar button{background:none;border:1px solid rgba(255,255,255,.3);color:var(--on-dark);font-size:.72rem;font-weight:700;padding:6px 11px;border-radius:99px;cursor:pointer;white-space:nowrap;}
+
+  @media (max-width:640px){
+    .goal-i{grid-template-columns:1fr;gap:4px;}
+    .goal-i .lab{padding-top:0;}
+    .feat-list,.mk{grid-template-columns:1fr;}
+  }
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}html.js .reveal{opacity:1;transform:none;}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="ico-house" viewBox="0 0 48 46"><path d="M24 3 L45 22 H39 V42 H9 V22 H3 Z" fill="currentColor"/><rect x="19" y="28" width="10" height="14" rx="1.5" fill="#ffffff" opacity="0.5"/></symbol>
+  <symbol id="ico-pin" viewBox="0 0 32 44"><path d="M16 2 C7 2 2 9 2 17 C2 28 16 42 16 42 C16 42 30 28 30 17 C30 9 25 2 16 2 Z" fill="currentColor"/><circle cx="16" cy="17" r="6" fill="#ffffff" opacity="0.9"/></symbol>
+  <symbol id="ico-star" viewBox="0 0 24 24"><path d="M12 2l2.9 6.2 6.8.6-5.1 4.5 1.5 6.7-6-3.5-6 3.5 1.5-6.7-5.1-4.5 6.8-.6z" fill="currentColor"/></symbol>
+</defs></svg>
+
+<div class="progress" id="progress"></div>
+<button class="editbtn" id="editBtn">Edit</button>
+<div class="editbar"><span>✏️ <b>Edit mode</b> — tap any underlined field.</span><button id="resetBtn">New vendor</button><button id="doneBtn">Done</button></div>
+
+<section class="sec dark full" id="top">
+  <div class="wrap">
+    <div class="cover-rule"></div>
+    <p class="eyebrow">Listing Proposal · Barry Plant Berwick</p>
+    <div class="cover-addr f" data-k="addr" data-ph="123 Example Street, Berwick">123 Example Street, Berwick</div>
+    <div class="cover-for">Prepared for <span class="f" data-k="vendor" data-ph="the Smith family">the Smith family</span></div>
+    <div class="cover-foot"><b>Mani Singh</b> &nbsp;·&nbsp; 0452 275 013 &nbsp;·&nbsp; <span class="f" data-k="date" data-ph="June 2026">June 2026</span></div>
+    <div class="agenda">
+      <h3>What we'll walk through today</h3>
+      <ol>
+        <li>Your situation</li>
+        <li>Your home</li>
+        <li>The evidence</li>
+        <li>The strategy</li>
+        <li>Marketing</li>
+        <li>The investment</li>
+        <li>The decision</li>
+      </ol>
+    </div>
+    <div class="scrollcue">Scroll to begin ↓</div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap reveal">
+    <p class="eyebrow">01 · Your Situation</p>
+    <h2 class="title">Let's start with you</h2>
+    <p class="lead">Before strategy, before price — here's exactly what we're solving for.</p>
+    <div class="goals">
+      <div class="goal-i"><div class="lab">Why you're selling</div><div class="val f" data-k="g_why" data-ph="Their reason for moving…">Upsizing for the growing family — more space and a bigger yard.</div></div>
+      <div class="goal-i"><div class="lab">Your timeline</div><div class="val f" data-k="g_time" data-ph="Their timeframe…">On the market in 4–6 weeks, settled before the school year.</div></div>
+      <div class="goal-i"><div class="lab">Your target outcome</div><div class="val f" data-k="g_target" data-ph="Their goal…">A strong, clean sale that frees up equity for the next move.</div></div>
+      <div class="goal-i"><div class="lab">What matters most</div><div class="val f" data-k="g_matters" data-ph="What they care about…">A smooth process, honest communication, no surprises.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sand">
+  <div class="wrap reveal">
+    <p class="eyebrow">02 · Your Home</p>
+    <h2 class="title">What makes your home special</h2>
+    <p class="hero-feat f" data-k="hero_feat" data-ph="Lead with the standout feature…">The showstopper is the north-facing alfresco and pool — a true entertainer's backyard that flows straight off the open-plan living.</p>
+    <div class="feat-list">
+      <div class="feat-i"><span class="v f" data-k="ft1">Open-plan living &amp; dining</span></div>
+      <div class="feat-i"><span class="v f" data-k="ft2">Renovated stone kitchen</span></div>
+      <div class="feat-i"><span class="v f" data-k="ft3">Master with ensuite &amp; WIR</span></div>
+      <div class="feat-i"><span class="v f" data-k="ft4">Ducted heating &amp; cooling</span></div>
+      <div class="feat-i"><span class="v f" data-k="ft5">Walk to schools &amp; parks</span></div>
+      <div class="feat-i"><span class="v f" data-k="ft6">Low-maintenance landscaping</span></div>
+    </div>
+    <div class="bbc">
+      <div><b class="f" data-k="beds">4</b><span>Beds</span></div>
+      <div><b class="f" data-k="baths">2</b><span>Baths</span></div>
+      <div><b class="f" data-k="cars">2</b><span>Cars</span></div>
+      <div><b class="f" data-k="land">560</b><span>m² Land</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap reveal">
+    <p class="eyebrow">03 · The Evidence</p>
+    <h2 class="title">What the market has just paid</h2>
+    <div class="price-band">
+      <div class="k">Recommended price positioning</div>
+      <div class="v f" data-k="price" data-ph="$XXX,XXX – $XXX,XXX">$950,000 – $1,025,000</div>
+      <div class="note">Built from recent comparable sales — evidence, not opinion.</div>
+    </div>
+    <p class="eyebrow" style="margin-bottom:8px;">Recent comparable sales</p>
+    <div class="comps">
+      <div class="comp"><span class="a f" data-k="c1a" data-ph="Address">13 Jack William Way, Berwick</span><span class="p f" data-k="c1p" data-ph="$">$1,025,000</span></div>
+      <div class="comp"><span class="a f" data-k="c2a" data-ph="Address">Comparable sale two</span><span class="p f" data-k="c2p" data-ph="$">$985,000</span></div>
+      <div class="comp"><span class="a f" data-k="c3a" data-ph="Address">Comparable sale three</span><span class="p f" data-k="c3p" data-ph="$">$960,000</span></div>
+    </div>
+    <p class="ev-note">Your price isn't a guess — it's what buyers have just proven they'll pay.</p>
+    <div class="meta-row">
+      <div class="meta"><div class="k">Method of sale</div><div class="v f" data-k="method" data-ph="Auction / Private / EOI">Private Sale</div></div>
+      <div class="meta"><div class="k">Campaign length</div><div class="v f" data-k="campaign" data-ph="e.g. 4 weeks">4 weeks</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sand">
+  <div class="wrap reveal">
+    <p class="eyebrow">04 · The Strategy</p>
+    <h2 class="title">How buyers actually buy</h2>
+    <p class="lead">Get this right and your home doesn't compete on price — buyers compete for it. Here's how it works.</p>
+  </div>
+</section>
+
+<section class="beat">
+  <div class="wrap reveal">
+    <p class="sub">Buyer journey · 1 of 6</p>
+    <h3>Every buyer starts with a circle.</h3>
+    <div class="stage">
+      <svg viewBox="0 0 900 520">
+        <rect x="40" y="30" width="820" height="460" rx="20" fill="#EDE8DE"/>
+        <g stroke="#000047" stroke-opacity="0.05" stroke-width="16"><line x1="40" y1="190" x2="860" y2="190"/><line x1="40" y1="330" x2="860" y2="330"/><line x1="300" y1="30" x2="300" y2="490"/><line x1="600" y1="30" x2="600" y2="490"/></g>
+        <circle cx="450" cy="260" r="192" fill="#001FB9" fill-opacity="0.07" stroke="#001FB9" stroke-width="2.5" stroke-dasharray="9 9"/>
+        <text x="450" y="92" text-anchor="middle" font-family="DM Sans" font-size="20" font-weight="700" fill="#001FB9" letter-spacing="2">THEIR SEARCH AREA</text>
+        <use href="#ico-house" x="120" y="100" width="46" height="44" style="color:#bdb7a8"/>
+        <use href="#ico-house" x="740" y="380" width="46" height="44" style="color:#bdb7a8"/>
+        <use href="#ico-house" x="330" y="150" width="48" height="46" style="color:#001FB9"/>
+        <use href="#ico-house" x="540" y="165" width="48" height="46" style="color:#001FB9"/>
+        <use href="#ico-house" x="325" y="330" width="48" height="46" style="color:#001FB9"/>
+        <use href="#ico-house" x="545" y="330" width="48" height="46" style="color:#001FB9"/>
+        <use href="#ico-house" x="430" y="350" width="48" height="46" style="color:#001FB9"/>
+        <use href="#ico-pin" x="428" y="220" width="44" height="60" style="color:#F92044"/>
+        <text x="450" y="300" text-anchor="middle" font-family="DM Sans" font-size="18" font-weight="700" fill="#22224a">Buyer</text>
+      </svg>
+    </div>
+    <p class="cap">They choose the area they want to live in — and only look <b>inside the circle</b>. Your home is already inside someone's right now.</p>
+  </div>
+</section>
+
+<section class="beat">
+  <div class="wrap reveal">
+    <p class="sub">Buyer journey · 2 of 6</p>
+    <h3>Then they line them up by price.</h3>
+    <div class="stage">
+      <svg viewBox="0 0 900 520">
+        <text x="120" y="40" font-family="DM Sans" font-size="18" font-weight="700" fill="#5d5d78" letter-spacing="1">LOWEST</text>
+        <text x="120" y="500" font-family="DM Sans" font-size="18" font-weight="700" fill="#5d5d78" letter-spacing="1">HIGHEST</text>
+        <g font-family="DM Sans">
+          <g><rect x="200" y="60" width="560" height="62" rx="10" fill="#fff" stroke="#d9d3c4"/><circle cx="238" cy="91" r="20" fill="#001FB9"/><text x="238" y="98" text-anchor="middle" font-size="20" font-weight="700" fill="#fff">1</text><use href="#ico-house" x="280" y="70" width="42" height="40" style="color:#001FB9"/><text x="340" y="98" font-size="20" fill="#22224a">Home A</text><text x="740" y="98" text-anchor="end" font-family="Playfair Display" font-size="24" font-weight="600" fill="#001FB9">$850,000</text></g>
+          <g><rect x="200" y="146" width="560" height="62" rx="10" fill="#fff" stroke="#d9d3c4"/><circle cx="238" cy="177" r="20" fill="#001FB9"/><text x="238" y="184" text-anchor="middle" font-size="20" font-weight="700" fill="#fff">2</text><use href="#ico-house" x="280" y="156" width="42" height="40" style="color:#001FB9"/><text x="340" y="184" font-size="20" fill="#22224a">Home B</text><text x="740" y="184" text-anchor="end" font-family="Playfair Display" font-size="24" font-weight="600" fill="#001FB9">$910,000</text></g>
+          <g><rect x="200" y="232" width="560" height="62" rx="10" fill="#fff" stroke="#d9d3c4"/><circle cx="238" cy="263" r="20" fill="#001FB9"/><text x="238" y="270" text-anchor="middle" font-size="20" font-weight="700" fill="#fff">3</text><use href="#ico-house" x="280" y="242" width="42" height="40" style="color:#001FB9"/><text x="340" y="270" font-size="20" fill="#22224a">Home C</text><text x="740" y="270" text-anchor="end" font-family="Playfair Display" font-size="24" font-weight="600" fill="#001FB9">$965,000</text></g>
+          <g><rect x="200" y="318" width="560" height="62" rx="10" fill="#fff" stroke="#d9d3c4"/><circle cx="238" cy="349" r="20" fill="#001FB9"/><text x="238" y="356" text-anchor="middle" font-size="20" font-weight="700" fill="#fff">4</text><use href="#ico-house" x="280" y="328" width="42" height="40" style="color:#001FB9"/><text x="340" y="356" font-size="20" fill="#22224a">Home D</text><text x="740" y="356" text-anchor="end" font-family="Playfair Display" font-size="24" font-weight="600" fill="#001FB9">$1,010,000</text></g>
+          <g><rect x="200" y="404" width="560" height="62" rx="10" fill="#fff" stroke="#d9d3c4"/><circle cx="238" cy="435" r="20" fill="#001FB9"/><text x="238" y="442" text-anchor="middle" font-size="20" font-weight="700" fill="#fff">5</text><use href="#ico-house" x="280" y="414" width="42" height="40" style="color:#001FB9"/><text x="340" y="442" font-size="20" fill="#22224a">Home E</text><text x="740" y="442" text-anchor="end" font-family="Playfair Display" font-size="24" font-weight="600" fill="#001FB9">$1,055,000</text></g>
+        </g>
+      </svg>
+    </div>
+    <p class="cap">Inside that circle, they line up everything for sale and sort it <b>cheapest to dearest</b>.</p>
+  </div>
+</section>
+
+<section class="beat">
+  <div class="wrap reveal">
+    <p class="sub">Buyer journey · 3 of 6</p>
+    <h3>They offer from the cheapest up.</h3>
+    <div class="stage">
+      <svg viewBox="0 0 900 520">
+        <g font-family="DM Sans">
+          <g opacity="0.45"><rect x="230" y="60" width="500" height="62" rx="10" fill="#fff" stroke="#d9d3c4"/><circle cx="268" cy="91" r="20" fill="#5d5d78"/><text x="268" y="98" text-anchor="middle" font-size="20" font-weight="700" fill="#fff">1</text><text x="312" y="98" font-size="20" fill="#22224a">$850,000</text><text x="700" y="98" text-anchor="end" font-size="17" font-weight="700" fill="#F92044">✕ missed out</text></g>
+          <g opacity="0.45"><rect x="230" y="146" width="500" height="62" rx="10" fill="#fff" stroke="#d9d3c4"/><circle cx="268" cy="177" r="20" fill="#5d5d78"/><text x="268" y="184" text-anchor="middle" font-size="20" font-weight="700" fill="#fff">2</text><text x="312" y="184" font-size="20" fill="#22224a">$910,000</text><text x="700" y="184" text-anchor="end" font-size="17" font-weight="700" fill="#F92044">✕ not the one</text></g>
+          <g><rect x="222" y="228" width="516" height="70" rx="12" fill="#fff" stroke="#001FB9" stroke-width="3"/><circle cx="266" cy="263" r="22" fill="#001FB9"/><text x="266" y="270" text-anchor="middle" font-size="21" font-weight="700" fill="#fff">3</text><text x="312" y="270" font-size="21" font-weight="700" fill="#22224a">$965,000</text><text x="710" y="270" text-anchor="end" font-size="18" font-weight="700" fill="#001FB9">making an offer →</text></g>
+          <g opacity="0.85"><rect x="230" y="318" width="500" height="62" rx="10" fill="#FAF8F4" stroke="#d9d3c4"/><circle cx="268" cy="349" r="20" fill="#bdb7a8"/><text x="268" y="356" text-anchor="middle" font-size="20" font-weight="700" fill="#fff">4</text><text x="312" y="356" font-size="20" fill="#5d5d78">$1,010,000</text></g>
+          <g opacity="0.85"><rect x="230" y="404" width="500" height="62" rx="10" fill="#FAF8F4" stroke="#d9d3c4"/><circle cx="268" cy="435" r="20" fill="#bdb7a8"/><text x="268" y="442" text-anchor="middle" font-size="20" font-weight="700" fill="#fff">5</text><text x="312" y="442" font-size="20" fill="#5d5d78">$1,055,000</text></g>
+          <g stroke="#F92044" stroke-width="4" fill="none"><line x1="150" y1="80" x2="150" y2="430"/><path d="M138 410 L150 438 L162 410"/></g>
+          <text x="150" y="475" text-anchor="middle" font-size="15" font-weight="700" fill="#F92044">UP IN PRICE</text>
+        </g>
+      </svg>
+    </div>
+    <p class="cap">Offer, miss out, move to the next — <b>working up in price</b> until something fits.</p>
+    <p class="micro">"Missed out" = lost to a stronger buyer, not unaffordable.</p>
+  </div>
+</section>
+
+<section class="beat">
+  <div class="wrap reveal">
+    <p class="sub">Buyer journey · 4 of 6</p>
+    <h3>But they stretch for the standout.</h3>
+    <div class="stage">
+      <svg viewBox="0 0 900 520">
+        <line x1="110" y1="330" x2="790" y2="330" stroke="#5d5d78" stroke-width="3" stroke-dasharray="10 8"/>
+        <text x="118" y="358" font-family="DM Sans" font-size="17" font-weight="700" fill="#5d5d78">Buyer's normal budget</text>
+        <use href="#ico-house" x="180" y="360" width="46" height="44" style="color:#001FB9"/>
+        <use href="#ico-house" x="300" y="372" width="46" height="44" style="color:#001FB9"/>
+        <use href="#ico-house" x="560" y="368" width="46" height="44" style="color:#001FB9"/>
+        <use href="#ico-house" x="680" y="362" width="46" height="44" style="color:#001FB9"/>
+        <circle cx="455" cy="150" r="78" fill="#F92044" fill-opacity="0.10"/>
+        <use href="#ico-house" x="424" y="120" width="64" height="60" style="color:#F92044"/>
+        <use href="#ico-star" x="470" y="104" width="30" height="30" style="color:#F92044"/>
+        <text x="455" y="208" text-anchor="middle" font-family="DM Sans" font-size="18" font-weight="700" fill="#F92044">Presents the best</text>
+        <g stroke="#F92044" stroke-width="4" fill="none"><line x1="455" y1="320" x2="455" y2="225"/><path d="M443 245 L455 218 L467 245"/></g>
+        <text x="540" y="288" font-family="Playfair Display" font-size="22" font-weight="600" fill="#F92044">+ they stretch</text>
+      </svg>
+    </div>
+    <p class="cap">Buyers <b>always pay more</b> for the home that presents the best. That's the one they fall for.</p>
+  </div>
+</section>
+
+<section class="beat">
+  <div class="wrap reveal">
+    <p class="sub">Buyer journey · 5 of 6</p>
+    <h3>My job: make yours the standout.</h3>
+    <div class="stage">
+      <svg viewBox="0 0 900 520">
+        <g font-family="DM Sans" font-size="16" font-weight="700">
+          <g><rect x="40" y="120" width="180" height="48" rx="24" fill="#fff" stroke="#001FB9"/><text x="130" y="150" text-anchor="middle" fill="#001FB9">Photography</text></g>
+          <g><rect x="40" y="236" width="180" height="48" rx="24" fill="#fff" stroke="#001FB9"/><text x="130" y="266" text-anchor="middle" fill="#001FB9">Styling</text></g>
+          <g><rect x="40" y="352" width="180" height="48" rx="24" fill="#fff" stroke="#001FB9"/><text x="130" y="382" text-anchor="middle" fill="#001FB9">Campaign</text></g>
+          <g stroke="#001FB9" stroke-width="3" fill="none"><path d="M222 144 H300"/><path d="M222 260 H300"/><path d="M222 376 H300"/><path d="M292 136 L304 144 L292 152"/><path d="M292 252 L304 260 L292 268"/><path d="M292 368 L304 376 L292 384"/></g>
+        </g>
+        <circle cx="450" cy="260" r="110" fill="#F92044" fill-opacity="0.08"/>
+        <rect x="350" y="180" width="200" height="160" rx="14" fill="#fff" stroke="#F92044" stroke-width="3"/>
+        <use href="#ico-house" x="418" y="206" width="64" height="60" style="color:#F92044"/>
+        <use href="#ico-star" x="435" y="172" width="30" height="30" style="color:#F92044"/>
+        <text x="450" y="304" text-anchor="middle" font-family="Playfair Display" font-size="22" font-weight="700" fill="#000047">YOUR HOME</text>
+        <text x="450" y="326" text-anchor="middle" font-family="DM Sans" font-size="15" font-weight="700" fill="#F92044" letter-spacing="1">#1 PICK</text>
+        <g>
+          <use href="#ico-pin" x="690" y="120" width="34" height="46" style="color:#001FB9"/>
+          <use href="#ico-pin" x="760" y="210" width="34" height="46" style="color:#001FB9"/>
+          <use href="#ico-pin" x="690" y="300" width="34" height="46" style="color:#001FB9"/>
+          <use href="#ico-pin" x="760" y="380" width="34" height="46" style="color:#001FB9"/>
+          <g stroke="#001FB9" stroke-width="3" fill="none"><path d="M688 150 H565"/><path d="M758 240 H570"/><path d="M688 330 H565"/><path d="M758 408 H562"/><path d="M578 142 L562 150 L578 158"/><path d="M583 232 L567 240 L583 248"/><path d="M578 322 L562 330 L578 338"/><path d="M578 400 L562 408 L578 416"/></g>
+        </g>
+      </svg>
+    </div>
+    <p class="cap">I market your home so it stops being just another option — and becomes <b>everyone's first pick</b>.</p>
+  </div>
+</section>
+
+<section class="beat">
+  <div class="wrap reveal">
+    <p class="sub">Buyer journey · 6 of 6</p>
+    <h3>Then we negotiate from strength.</h3>
+    <div class="stage">
+      <svg viewBox="0 0 900 520">
+        <rect x="360" y="40" width="180" height="92" rx="12" fill="#fff" stroke="#F92044" stroke-width="3"/>
+        <use href="#ico-house" x="418" y="56" width="48" height="46" style="color:#F92044"/>
+        <text x="450" y="120" text-anchor="middle" font-family="DM Sans" font-size="15" font-weight="700" fill="#000047">YOUR HOME</text>
+        <g font-family="Playfair Display" font-weight="600">
+          <g><rect x="150" y="360" width="160" height="56" rx="10" fill="#EDE8DE"/><text x="230" y="396" text-anchor="middle" font-size="22" fill="#22224a">$985,000</text></g>
+          <g><rect x="370" y="300" width="160" height="56" rx="10" fill="#EDE8DE"/><text x="450" y="336" text-anchor="middle" font-size="22" fill="#22224a">$1,015,000</text></g>
+          <g><rect x="590" y="230" width="170" height="62" rx="10" fill="#001FB9"/><text x="675" y="269" text-anchor="middle" font-size="23" fill="#fff">$1,050,000</text></g>
+        </g>
+        <text x="230" y="445" text-anchor="middle" font-family="DM Sans" font-size="15" font-weight="700" fill="#5d5d78">Buyer 1</text>
+        <text x="450" y="385" text-anchor="middle" font-family="DM Sans" font-size="15" font-weight="700" fill="#5d5d78">Buyer 2</text>
+        <text x="675" y="318" text-anchor="middle" font-family="DM Sans" font-size="15" font-weight="700" fill="#001FB9">Best price</text>
+        <g stroke="#F92044" stroke-width="4" fill="none"><path d="M150 470 C 360 470, 560 360, 760 200"/><path d="M740 196 L766 188 L760 214"/></g>
+      </svg>
+    </div>
+    <p class="cap">With buyers competing and stretching, I'm not chasing one offer — I'm <b>choosing the best one</b>.</p>
+  </div>
+</section>
+
+<section class="sec sand">
+  <div class="wrap reveal">
+    <p class="eyebrow">05 · Marketing</p>
+    <h2 class="title">In front of every buyer who matters</h2>
+    <p class="lead">This is how we make your home the standout — the campaign that turns it into the first pick.</p>
+    <p class="mk-cost">Your complete <b>$<span class="f" data-k="campaign_cost">5,000</span></b> campaign:</p>
+    <div class="mk">
+      <div class="mk-i"><span class="v f" data-k="m1">Professional photography &amp; floorplan</span></div>
+      <div class="mk-i"><span class="v f" data-k="m2">Feature video — a cinematic walkthrough</span></div>
+      <div class="mk-i"><span class="v f" data-k="m3">Premiere Plus — top of search on realestate.com.au &amp; Domain</span></div>
+      <div class="mk-i"><span class="v f" data-k="m4">Premium signboard &amp; local presence</span></div>
+      <div class="mk-i"><span class="v f" data-k="m5">Targeted, paid social media campaign</span></div>
+      <div class="mk-i"><span class="v f" data-k="m6">Match to the Barry Plant buyer database</span></div>
+      <div class="mk-i"><span class="v f" data-k="m7">Open homes &amp; private inspections</span></div>
+      <div class="mk-i"><span class="v f" data-k="m8">Weekly written &amp; verbal reporting</span></div>
+    </div>
+    <div class="reach">Your home put in front of <b><span class="f" data-k="reach" data-ph="thousands of">thousands of</span></b> active buyers searching your area right now.</div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap reveal">
+    <p class="eyebrow">05 · Marketing — the value</p>
+    <h2 class="title">Why it's worth every cent</h2>
+    <p class="lead">Cheaper marketing isn't a saving — it's fewer buyers. And fewer buyers is a lower price.</p>
+    <div class="roi">
+      <div class="roi-line"><span>Your campaign</span><div class="b"><i style="width:50%;background:#001FB9"></i></div><b>$5,000</b></div>
+      <div class="roi-line"><span>Just 1% more on your sale*</span><div class="b"><i style="width:100%;background:#F92044"></i></div><b>$10,000+</b></div>
+      <p>*Illustrative, on a ~$1M sale. Marketing is the lever — more reach means more buyers, more competition, and a higher price. It returns far more than it costs.</p>
+    </div>
+    <p class="eyebrow" style="margin:0 0 10px;">Full campaign vs cut-price campaign</p>
+    <div class="cmp">
+      <div class="cmp-row"><div class="h"></div><div class="h">Full campaign</div><div class="h">Cut-price</div></div>
+      <div class="cmp-row"><div class="lbl">Photography</div><div class="full">Professional</div><div class="cut">Basic</div></div>
+      <div class="cmp-row"><div class="lbl">Feature video</div><div class="full">Yes</div><div class="cut">—</div></div>
+      <div class="cmp-row"><div class="lbl">Floorplan</div><div class="full">Yes</div><div class="cut">Often none</div></div>
+      <div class="cmp-row"><div class="lbl">Portal placement</div><div class="full">Premiere Plus — top of search</div><div class="cut">Standard — mid-page</div></div>
+      <div class="cmp-row"><div class="lbl">Social campaign</div><div class="full">Targeted &amp; paid</div><div class="cut">Minimal</div></div>
+      <div class="cmp-row"><div class="lbl">Buyers reached</div><div class="full">Maximum</div><div class="cut">Limited</div></div>
+      <div class="cmp-row result"><div class="lbl">Likely result</div><div class="full">Competition → higher price</div><div class="cut">Fewer buyers → lower price</div></div>
+    </div>
+    <p class="punch">A cheaper campaign doesn't save you money — it reaches fewer buyers. The few thousand you'd save can cost many times that when the offers come in.</p>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap reveal">
+    <p class="eyebrow">06 · The Investment</p>
+    <h2 class="title">Performance, not cost</h2>
+    <p class="lead">I only do well when you do well. Pick the structure that suits you — every one rewards a better result. All fees inc GST.</p>
+    <div class="fees3">
+      <div class="feecard">
+        <div class="tag">Certainty</div>
+        <h3>Fixed</h3>
+        <div class="rate"><b class="f" data-k="fee_fixed">1.8%</b><span>inc GST</span></div>
+        <p>One flat fee, whatever the result. Simple and certain.</p>
+      </div>
+      <div class="feecard accent">
+        <div class="tag">Most aligned</div>
+        <h3>Performance</h3>
+        <div class="rate"><b class="f" data-k="fee_perf">1.75%</b><span>inc GST, up to target</span></div>
+        <div class="plus">+ <span class="f" data-k="fee_bonus">10%</span> of everything above the agreed target</div>
+        <p>A lower base — I only earn more by getting you more. Every dollar over target, you keep 90%.</p>
+      </div>
+      <div class="feecard">
+        <div class="tag">You decide</div>
+        <h3>Vendor's discretion</h3>
+        <div class="rate"><b class="f" data-k="fee_disc">1.75–2.25%</b><span>inc GST</span></div>
+        <p>We set the range; at the end, you choose where my fee lands — based on how I performed.</p>
+      </div>
+    </div>
+    <p class="fee-eg">Performance example: agreed target <span class="f" data-k="fee_target" data-ph="$1,000,000">$1,000,000</span> — sell at $1,050,000 and I share in only that extra $50,000 (you keep $45,000 of it).</p>
+    <div class="fee-mktg">Marketing: <b>$<span class="f" data-k="mktg">5,000</span></b> — the same on every option.</div>
+    <p class="fee-frame">I only do well when you do well. The right agent doesn't cost you money — they net you more, even after the fee. That difference is the whole point.</p>
+  </div>
+</section>
+
+<section class="sec dark full ask">
+  <div class="wrap reveal">
+    <p class="eyebrow">The Decision</p>
+    <h2 class="ask-q">Am I your agent<span class="dot">?</span></h2>
+    <p class="ask-sub">Let's get <span class="f" data-k="addr2" data-ph="your home">123 Example Street</span> sold.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap"><span><b>Mani Singh</b> · Barry Plant Berwick</span><span>0452 275 013</span></div>
+</footer>
+
+<script>
+(function(){
+  var rev=Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.15});
+    rev.forEach(function(el){io.observe(el);});
+  } else { rev.forEach(function(el){el.classList.add('in');}); }
+
+  var prog=document.getElementById('progress');
+  function onScroll(){ var h=document.documentElement, max=h.scrollHeight-h.clientHeight; prog.style.width=(max>0?(h.scrollTop/max*100):0)+'%'; }
+  window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+
+  function lsGet(k){try{return window.localStorage.getItem(k);}catch(e){return null;}}
+  function lsSet(k,v){try{window.localStorage.setItem(k,v);}catch(e){}}
+  function lsDel(k){try{window.localStorage.removeItem(k);}catch(e){}}
+  var fields=Array.prototype.slice.call(document.querySelectorAll('.f'));
+  fields.forEach(function(f){
+    var key='lpf_'+f.getAttribute('data-k');
+    var saved=lsGet(key); if(saved!==null) f.textContent=saved;
+    f.addEventListener('input',function(){ lsSet(key,f.textContent); });
+  });
+
+  var editing=false, editBtn=document.getElementById('editBtn');
+  function setEditing(on){
+    editing=on; document.body.classList.toggle('editing',on); editBtn.classList.toggle('active',on);
+    fields.forEach(function(f){ f.setAttribute('contenteditable', on?'true':'false'); });
+  }
+  editBtn.addEventListener('click',function(){ setEditing(!editing); });
+  document.getElementById('doneBtn').addEventListener('click',function(){ setEditing(false); });
+  document.getElementById('resetBtn').addEventListener('click',function(){
+    if(!window.confirm('Clear all vendor details and start fresh?')) return;
+    fields.forEach(function(f){ lsDel('lpf_'+f.getAttribute('data-k')); f.textContent=''; });
+    window.scrollTo(0,0);
+  });
+  setEditing(false);
+})();
+</script>
+</body>
+</html>
